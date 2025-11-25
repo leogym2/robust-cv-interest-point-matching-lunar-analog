@@ -24,28 +24,42 @@ The project follows a three-step workflow:
 **(1) keypoint detection**, **(2) feature matching**, and **(3) robustness evaluation through heatmaps**.
 
 ### 1. Keypoint Detection
-I began by extracting interest points from POLAR img.  
 
-- Using **SIFT**, I computed scale- and rotation-invariant keypoints on lunar-like scenes:  
+The first step of the pipeline consists in identifying **distinctive and repeatable interest points** in the input POLAR images.  
+These are points that should remain detectable despite changes in illumination or viewpoint, making them suitable for matching.
+
+- With **SIFT**, keypoints are detected using a scale-space search (Difference of Gaussians), followed by orientation assignment to ensure invariance to rotation and scale.  
+  This produces sparse but geometrically stable features on lunar-like scenes:  
   ![SIFT Keypoints](img/SIFT_points.png)
 
-- I then repeated the detection using **SuperPoint**, which produces learned keypoints that behave differently under strong illumination gradients:  
+- With **SuperPoint**, keypoints are detected by a deep neural network trained to identify repeatable interest points even under strong photometric variation.  
+  This results in denser keypoints and a different spatial distribution, reflecting the learned nature of the detector:  
   ![SuperPoint Keypoints](img/SuperPoint_points.png)
 
-These visualizations illustrate the first stage of the pipeline: identifying stable features under extreme lighting.
+Together, these visualizations show how classical and learned detectors behave when exposed to harsh illumination conditions typical of lunar terrains.
+
 
 ---
 
 ### 2. Feature Matching
-After detecting keypoints, I computed correspondences between image pairs with different exposures or viewpoints.
 
-- I first evaluated **SuperPoint descriptor matching** using nearest-neighbor association:  
+After detecting keypoints, the next step is to establish **correspondences** between two images captured under different exposure or viewpoint settings.  
+Matching is essential for geometric verification, pose estimation, stereo reconstruction, and DEM generation.
+
+- With **SIFT**, matching is performed using descriptor comparison (typically nearest-neighbor search) followed by ratio filtering to remove ambiguous matches.  
+  This step provides a classical baseline for geometric consistency under illumination variation.  
+  ![SIFT Matching](img/SIFT_matching.png)
+
+- With **SuperPoint**, descriptors are matched using nearest-neighbor search in the learned descriptor space.  
+  This allows us to evaluate how learned features behave under strong photometric differences.  
   ![SuperPoint Matching](img/SuperPoint_matching.png)
 
-- Next, I applied **SuperPoint + SuperGlue**, where SuperGlue refines correspondences using attention and graph neural networks:  
+- With **SuperPoint + SuperGlue**, correspondences are refined using a graph neural network that performs attention-based message passing between keypoints.  
+  The matcher incorporates spatial context and produces more stable and coherent correspondences.  
   ![SuperGlue Matching](img/SuperGlue_matching.png)
 
-These steps show how each method handles geometric and illumination changes when establishing pixel-level correspondences.
+These matching outputs represent the core of the evaluation: how reliably each pipeline can connect the same physical points across challenging lunar-analog images.
+
 
 ---
 
