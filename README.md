@@ -12,13 +12,13 @@ This is relevant for tasks such as Digital Elevation Model (DEM) reconstruction,
 
 ---
 
-## 🛰️ Dataset
+## Dataset
 The experiments use a subset of the **NASA POLAR Traverses** dataset, which replicates lunar-like illumination conditions such as deep shadows, harsh contrasts, and backlighting.  
 In this project, images from traverse location `loc00m` were used, with controlled variation in **exposure** and **viewpoint**.
 
 ---
 
-## 🔬 Experimental Scenarios
+## Experimental Scenarios
 
 Two controlled scenarios were tested:
 
@@ -32,7 +32,7 @@ Each image pair is evaluated using **RANSAC inlier ratio** to quantify the corre
 
 ---
 
-## 📊 Key Findings
+## Key Findings
 
 - **SIFT**  
   More robust to viewpoint changes but sensitive to strong illumination variation.
@@ -47,13 +47,8 @@ Overall, no method dominates in all conditions. Classical and learned features s
 
 ---
 
-## 🚀 Future Improvements
+## Future Improvements
 
 - Extend the experiments to a larger subset of the POLAR dataset.  
 - Add more matching methods (ORB, R2D2, D2-Net, ALIKED).  
 - Include additional quantitative metrics (repeatability, precision/recall, pose error).
-
----
-
-## 📂 Repository Structure
-
