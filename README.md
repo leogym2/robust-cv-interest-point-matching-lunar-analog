@@ -56,17 +56,16 @@ For each pair, I computed **RANSAC inlier ratios**, then organized them into hea
 Below are the heatmaps produced for all methods under both scenarios:  
 **same viewpoint** (illumination change only) and **different viewpoint** (illumination + geometry change).
 
-#### SIFT
-![SIFT Same View](img/SIFT.png)  
-![SIFT Different View](img/SIFT_diff.png)
+## Heatmap Comparison
 
-#### SuperPoint
-![SuperPoint Same View](img/SuperPoint.png)  
-![SuperPoint Different View](img/SuperPoint_diff.png)
+A direct visual comparison of the robustness of all three methods under the two experimental scenarios:
 
-#### SuperPoint + SuperGlue
-![SuperGlue Same View](img/SuperGlue.png)  
-![SuperGlue Different View](img/SuperGlue_diff.png)
+| **Method**                 | **Same Viewpoint, Different Illumination** | **Different Viewpoint, Different Illumination** |
+|---------------------------|---------------------------------------------|------------------------------------------------|
+| **SIFT**                  | ![SIFT Same](img/SIFT.png)                  | ![SIFT Diff](img/SIFT_diff.png)                |
+| **SuperPoint**            | ![SP Same](img/SuperPoint.png)              | ![SP Diff](img/SuperPoint_diff.png)            |
+| **SuperPoint + SuperGlue**| ![SG Same](img/SuperGlue.png)               | ![SG Diff](img/SuperGlue_diff.png)             |
+
 
 These heatmaps represent the final stage of the pipeline, summarizing the overall robustness of each method under varying exposure and viewpoint conditions.
 
