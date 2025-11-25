@@ -1,6 +1,6 @@
 <p align="center">
   <img src="img/SIFT_points.png" height="180">
-  <img src="img/SIFT_matching.png" height="180">
+  <img src="img/SuperPoints.png" height="180">
   <img src="img/SIFT.png" height="180">
 </p>
 
